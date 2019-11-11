@@ -1,7 +1,9 @@
 #include "Level.h"
+
 #include <Windows.h>
 
-Level::Level(sf::RenderWindow* hwnd, Input* in)
+Level::Level(sf::RenderWindow* hwnd, Input* in):
+	elasticString(2, 2,150, 5)
 {
 	window = hwnd;
 	input = in;
@@ -9,11 +11,14 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	// initialise game objects
 	play = true;
 
+	zigTexture.loadFromFile("gfx/zig.png");
 	Bar.setFillColor(sf::Color::Black);
 	Bar.setPosition(0, 150);
 	Bar.setSize(sf::Vector2f(window->getSize().x, 10.0f));
-	
-
+	elasticString.setTexture(&zigTexture);
+	elasticString.setInput(input);
+	//elasticString.setSize(sf::Vector2f(100, 100));
+	elasticString.setRenderWindow(window);
 	if (!font.loadFromFile("font/arial.ttf"))
 	{
 		// something went wrong
@@ -60,6 +65,9 @@ void Level::update(float dt)
 {
 	if (play)
 	{
+		
+
+
 		elasticString.update(dt);
 		/*std::string xpos = std::to_string(sf::Mouse::getPosition(*window).x);
 		std::string ypos = std::to_string(sf::Mouse::getPosition(*window).y);

@@ -34,7 +34,7 @@ private:
 
 	ElasticString   elasticString;
 	sf::RectangleShape Bar;
-
+	sf::Texture zigTexture;
 	sf::Font font;
 	sf::Text text;
 };

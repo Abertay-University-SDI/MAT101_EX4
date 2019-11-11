@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="cannonBall.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="ElasticString.cpp" />
     <ClCompile Include="Framework\Animation.cpp" />
     <ClCompile Include="Framework\AudioManager.cpp" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="cannonBall.h" />
+    <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="ElasticString.h" />
     <ClInclude Include="Force.h" />
     <ClInclude Include="Framework\Animation.h" />
