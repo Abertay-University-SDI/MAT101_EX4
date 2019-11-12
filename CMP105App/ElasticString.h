@@ -36,5 +36,7 @@ private:
 
 
 	void UpdateVertPosition(float y);
+
+	static const float GravityConstant;
 };
 

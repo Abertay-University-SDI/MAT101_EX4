@@ -2,6 +2,8 @@
 #include "CollisionDetection.h"
 
 
+ const float ElasticString::GravityConstant = 9.8f;
+
 ElasticString::ElasticString(float nLength, float massKG, float positionOnBar, float kValue) :
 	naturalLength(nLength),
 	mass(massKG),
@@ -16,7 +18,7 @@ ElasticString::ElasticString(float nLength, float massKG, float positionOnBar, f
 	velocity = 0;
 
 
-	xExtensionEquil = (massKG*9.8*naturalLength) / lamda;
+	xExtensionEquil = (massKG*GravityConstant*naturalLength) / lamda;
 	xExtension = xExtensionEquil;
 	UpdateVertPosition(naturalLength + xExtension);
 	
@@ -71,7 +73,7 @@ void ElasticString::update(float dt)
 
 	//T = mg = kx = lamda*x / l  in equilibrium
 	//mgl/lamda = EqualibriumX
-	xExtensionEquil = mass.GetAmountKG()*9.8*naturalLength / lamda;
+	xExtensionEquil = mass.GetAmountKG()*GravityConstant*naturalLength / lamda;
 
 
 	//set xExtension  based on position of ball -or- end of string and natural length 
@@ -83,18 +85,29 @@ void ElasticString::update(float dt)
 	
 	float sign = isAboveFixedPoint ? 1.0f : -1.0f;
 
-
+	
 	//F = ma
 	//T-mg = ma while below the Equilibrium  and -T - mg while above fixpoint and equilbrium
+	//Here add Dampening based on velocity  D(v)
+	//F = T - mg  if F > 0 then -D(v)  if F < 0 then +D(v)  dampening always opposes force of motion
+	float Tension = sign * (lamda*xExtension) / (naturalLength);
+	float force = Tension + GravityConstant *mass.GetAmountKG();
+
+	float dSign = velocity > 0 ? -1.0f : 1.0f; //always opposes motion 
+	//force += dSign *abs(Tension)* 0.1;
+
+
+	float acceleration = force / mass.GetAmountKG();
 	//need to keep ratio of pixels to meters 
 	//need to check to see if x = 0 (or negative) in which case it is slack and only g is acting on it
-	float acceleration = sign*(lamda*xExtension) / (naturalLength*mass.GetAmountKG()) + 9.8;//positive is down
+	//float acceleration = sign*(lamda*xExtension) / (naturalLength*mass.GetAmountKG()) + GravityConstant;//positive is down
 
 	if (fabs(acceleration) < 0.0001)
 	{
 		acceleration = 0;
 	}
 
+	
 	//resistence to motion relative to velocity 
 	//t = dt
 	//u = last frame v
