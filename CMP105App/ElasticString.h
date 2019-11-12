@@ -18,11 +18,11 @@ private:
 	//the l value the length of the string if no mass or tention is extending the string
 	float naturalLength;
 	// the x value the length of the extention beyond the natural length
-	float xExtention;
+	float xExtension;
 	//modulus of elasticity lamda
 	float lamda;
 	//the x value of the length of the extention beyond natural length when the system is at equilibrium (mass is hanging from string, no motion);
-	float xExtentionEquil;
+	float xExtensionEquil;
 	float velocity;
 	Mass mass;
 
@@ -32,6 +32,9 @@ private:
 
 	bool isMassSelected;
 
+	bool isAboveFixedPoint = false;
 
+
+	void UpdateVertPosition(float y);
 };
 

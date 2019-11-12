@@ -3,7 +3,7 @@
 #include <Windows.h>
 
 Level::Level(sf::RenderWindow* hwnd, Input* in):
-	elasticString(2, 2,150, 5)
+	elasticString(200, 2,150, 5)
 {
 	window = hwnd;
 	input = in;
@@ -28,7 +28,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in):
 	//drag = false;
 
 	// Create a text
-	text.setString("Hello world");
+	text.setString("Elastics");
 	text.setFont(font);
 	text.setCharacterSize(30);
 	text.setStyle(sf::Text::Bold);
