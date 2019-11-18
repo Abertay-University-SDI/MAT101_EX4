@@ -94,7 +94,7 @@ void ElasticString::update(float dt)
 	float force = Tension + GravityConstant *mass.GetAmountKG();
 
 	float dSign = velocity > 0 ? -1.0f : 1.0f; //always opposes motion 
-	//force += dSign *abs(Tension)* 0.1;
+	force += dSign *abs(Tension)* 0.3;
 
 
 	float acceleration = force / mass.GetAmountKG();
