@@ -69,7 +69,7 @@ void ElasticString::update(float dt)
 	{
 		return; //don't move with kinematics if currently selected
 	}
-
+		/////////////////////////////////////////MAT101 CODE HERE //////////////////////////////////////////////////////////////
 
 	//T = mg = kx = lamda*x / l  in equilibrium
 	//mgl/lamda = EqualibriumX
@@ -122,7 +122,7 @@ void ElasticString::update(float dt)
 
 	
 	UpdateVertPosition(newTotalLength);
-
+	//////////////////////////////////////////////END MAT101 CODE HERE
 
 	
 }
